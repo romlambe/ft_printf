@@ -6,31 +6,13 @@
 /*   By: romlambe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 13:46:07 by romlambe          #+#    #+#             */
-/*   Updated: 2023/10/18 11:15:08 by romlambe         ###   ########.fr       */
+/*   Updated: 2023/10/18 22:17:05 by romlambe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putchar(char c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
-int	ft_putstr(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (ft_putstr("(null)"));
-	while (str[i])
-		ft_putchar(str[i++]);
-	return(i);
-}
-
-int ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
 	size_t	i;
 
@@ -42,16 +24,18 @@ int ft_strlen(char *str)
 
 int	ft_putnbr_hexa(unsigned int n, char *base)
 {
-	int	i;
-	int	j;
-	char	tab[8];
+	int		i;
+	int		j;
+	char	tab[12];
 
+	i = 0;
+	j = 0;
 	while (n != 0 || j == 0)
 	{
 		tab[j++] = base[n % 16];
 		n /= 16;
 	}
-	while(j)
+	while (j)
 		i += ft_putchar(tab[--j]);
 	return (i);
 }
@@ -64,7 +48,7 @@ int	ft_adress(void *ptr, char *base)
 	int					len;
 	char				tab[16];
 
-	len = ft_strlen(base);
+	len = 16;
 	if (!ptr)
 		return (ft_putstr("(nil)"), 5);
 	n = (unsigned long int)ptr;
@@ -75,8 +59,7 @@ int	ft_adress(void *ptr, char *base)
 		tab[j++] = base[n % len];
 		n /= len;
 	}
-	if (len == 16)
-		i += ft_putstr("0x");
+	i += ft_putstr("0x");
 	while (j)
 		i += ft_putchar(tab[--j]);
 	return (i);
@@ -111,7 +94,7 @@ int	ft_putnbr_unsigned(unsigned int n, char *base)
 {
 	int		i;
 	int		j;
-	char	tab[16];
+	char	tab[12];
 
 	j = 0;
 	i = 0;
