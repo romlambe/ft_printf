@@ -6,7 +6,7 @@
 /*   By: romlambe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 13:46:07 by romlambe          #+#    #+#             */
-/*   Updated: 2023/10/18 22:17:05 by romlambe         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:12:56 by romlambe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,8 @@ int	ft_adress(void *ptr, char *base)
 	int					i;
 	int					j;
 	unsigned long int	n;
-	int					len;
 	char				tab[16];
 
-	len = 16;
 	if (!ptr)
 		return (ft_putstr("(nil)"), 5);
 	n = (unsigned long int)ptr;
@@ -56,8 +54,8 @@ int	ft_adress(void *ptr, char *base)
 	i = 0;
 	while (n != 0 || j == 0)
 	{
-		tab[j++] = base[n % len];
-		n /= len;
+		tab[j++] = base[n % 16];
+		n /= 16;
 	}
 	i += ft_putstr("0x");
 	while (j)
@@ -65,7 +63,7 @@ int	ft_adress(void *ptr, char *base)
 	return (i);
 }
 
-int	ft_putnbr(int n)
+int	ft_iputnbr(int n)
 {
 	int		i;
 	int		j;

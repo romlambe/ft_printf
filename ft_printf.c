@@ -6,7 +6,7 @@
 /*   By: romlambe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 13:41:51 by romlambe          #+#    #+#             */
-/*   Updated: 2023/10/18 22:23:33 by romlambe         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:41:39 by romlambe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int	ft_condition(char c, va_list argptr, int l)
 	if (c == 's')
 		return (ft_putstr(va_arg(argptr, char *)));
 	if (c == 'p')
-		return (ft_adress(va_arg(argptr, void *), "0123456789abcedf"));
+		return (ft_adress(va_arg(argptr, void *), "0123456789abcdef"));
 	if (c == 'd' || c == 'i')
-		return (ft_putnbr(va_arg(argptr, int)));
+		return (ft_iputnbr(va_arg(argptr, int)));
 	if (c == 'x')
 		return (ft_putnbr_hexa(va_arg(argptr, unsigned int),
 				"0123456789abcdef"));
@@ -79,15 +79,18 @@ int	ft_putstr(char *str)
 		ft_putchar(str[i++]);
 	return (i);
 }
-/*#include <limits.h>
-#include <stdio.h>
+/*#include <stdio.h>
 int main()
 {
-	char c = '0';
+	char c = '4';
 	char *str = "salut";
 	int age = 16;
 	int *ptrsurage = &age;
 	int uns = 16;
-	ft_printf("%c\n%s\n%p\n%d\n%x\n\n", c, str, ptrsurage, age, uns);
-	printf("%c\n%s\n%p\n%d\n%x\n", c, str, ptrsurage, age, uns);
+	ft_printf("%c\n%s\n%p\n%d\n%x\n%u\n", c, str, ptrsurage, age, uns, uns);
+	printf("%c\n%s\n%p\n%d\n%x\n%u\n", c, str, ptrsurage, age, uns, uns);
+	int res = ft_printf("%%%s%%%d", "coucou", 127);
+	ft_printf("%d\n", res);
+	ft_printf("%d\n", ft_printf("%%"));
+	printf("%d\n", printf("%%"));
 }*/
